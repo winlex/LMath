@@ -19,6 +19,9 @@ namespace TestApp
             matrix[1, 1] = 5;
             matrix[1, 2] = 6;
             Console.Write(matrix.Transposition().ToString());
+            Equation a = new Equation(3, -2, 1);
+            Console.Write(a.X);
+            Console.Read();
         }
     }
 }
