@@ -8,9 +8,37 @@ namespace LMath
 {
     public class Matrix<T>
     {
+        private T[,] matrix;
+        private int row;
+        private int col;
+
+        public T this[int i, int j]
+        {
+            get
+            {
+                return matrix[i, j];
+            }
+            set
+            {
+                matrix[i, j] = value;
+            }
+        }
+        public int Col
+        {
+            get { return col; }
+            set { col = value; }
+        }
+        public int Row
+        {
+            get { return row; }
+            set { row = value; }
+        }
+
         public Matrix(int i, int j)
         {
             matrix = new T[i, j];
+            row = i;
+            col = j;
         }
         public Matrix(T[,] temp)
         {
@@ -38,32 +66,6 @@ namespace LMath
             }
             catch (Exception e) { row = i; }
         }
-
-        public T this[int i, int j]
-        {
-            get
-            {
-                return matrix[i, j];
-            }
-            set
-            {
-                matrix[i, j] = value;
-            }
-        }
-        public int Col
-        {
-            get { return col; }
-            set { col = value; }
-        }
-        public int Row
-        {
-            get { return row; }
-            set { row = value; }
-        }
-
-        private T[,] matrix;
-        private int row;
-        private int col;
 
         public Matrix<T> Transposition()
         {
@@ -140,6 +142,23 @@ namespace LMath
                 Convert.ToInt32(" ");
                 return new Matrix<T>(0, 0);
             }
+        }
+
+        public override string ToString()
+        {
+            string result = "";
+
+            for(int i = 0; i < this.row; i++)
+            {
+                for (int j = 0; j < this.col; j++)
+                {
+                    result += matrix[i, j];
+                    result += " ";
+                }
+                result += "\n";
+            }
+
+            return result;
         }
     }
 }
